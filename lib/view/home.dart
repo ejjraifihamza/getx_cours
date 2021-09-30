@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_cours/view/page_four.dart';
 import 'package:getx_cours/view/page_one.dart';
-import 'package:getx_cours/view/page_three.dart';
 import 'package:getx_cours/view/page_two.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,16 +28,6 @@ class HomePage extends StatelessWidget {
                   Get.to(() => PageTwo());
                 },
                 child: Text('Go To Page Two')),
-            ElevatedButton(
-                onPressed: () {
-                  Get.to(() => PageThree());
-                },
-                child: Text('Go To Page Three')),
-            ElevatedButton(
-                onPressed: () {
-                  Get.to(() => PageFour());
-                },
-                child: Text('Go To Page Four')),
           ],
         ),
       ),
