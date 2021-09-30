@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_cours/controller/home_controller.dart';
 
 class PageOne extends StatelessWidget {
-  const PageOne({Key? key}) : super(key: key);
-
+  PageOne({Key? key}) : super(key: key);
+  // ! permanent keep change in memory
+  // final HomeController controller = Get.put(HomeController(), permanent: true);
+  final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,26 +20,29 @@ class PageOne extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GetBuilder<HomeController>(
-                init: HomeController(),
-                builder: (controller) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            controller.increment();
-                          },
-                          child: Text('+')),
-                      Center(child: Text('${controller.counter}')),
-                      ElevatedButton(
-                          onPressed: () {
-                            controller.decrement();
-                          },
-                          child: Text('-')),
-                    ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      print('increment rebuild');
+                      controller.increment();
+                    },
+                    child: Text('+')),
+                GetBuilder<HomeController>(builder: (controller) {
+                  print('text rebuild');
+                  return Center(
+                    child: Text('${controller.counter}'),
                   );
-                })
+                }),
+                ElevatedButton(
+                    onPressed: () {
+                      print('decrement rebuild');
+                      controller.decrement();
+                    },
+                    child: Text('-')),
+              ],
+            ),
           ],
         ),
       ),
