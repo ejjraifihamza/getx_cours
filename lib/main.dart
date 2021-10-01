@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_cours/utils/my_bindings.dart';
 import 'package:getx_cours/view/home.dart';
 
 void main() {
@@ -15,6 +16,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: HomePage(),
+      getPages: [
+        // ! call MyBindings by route name
+        // ! this way HomeController will be deleted from memory when you close the route
+        GetPage(name: '/', page: () => HomePage(), binding: MyBindings()),
+      ],
+      initialRoute: '/',
+      // ! call MyBindings by initialBinding
+      // initialBinding: MyBindings(),
     );
   }
 }

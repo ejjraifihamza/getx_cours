@@ -6,8 +6,6 @@ import 'package:getx_cours/controller/home_controller.dart';
 
 class PageOne extends StatelessWidget {
   PageOne({Key? key}) : super(key: key);
-  // ! permanent keep change in memory
-  // final HomeController controller = Get.put(HomeController(), permanent: true);
   final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
